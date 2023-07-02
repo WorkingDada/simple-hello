@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.build("python-hello:1.0", "-f Dockerfile .")
+                    docker.build("python-hello:1.0", "-f dockerfile .")
 
                 }
             }

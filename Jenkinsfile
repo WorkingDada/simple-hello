@@ -4,7 +4,8 @@ pipeline {
         stage('Check Git') {
             steps {
                 script {
-                    git --version
+                    git init
+                    git remote add origin https://github.com/WorkingDada/simple-hello.git
                 }
             }
         }

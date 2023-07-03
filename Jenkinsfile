@@ -5,7 +5,7 @@ pipeline {
             steps {
                 script {
                     git init
-                    git remote add origin https://github.com/WorkingDada/simple-hello.git
+                    git remote add origin 'https://github.com/WorkingDada/simple-hello.git'
                 }
             }
         }

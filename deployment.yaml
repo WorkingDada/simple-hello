@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: python-hello-container
-          image: python-hello:1.0
+          image: pttzx/python-hello:1.0
           ports:
             - containerPort: 8081
     

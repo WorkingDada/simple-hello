@@ -12,14 +12,16 @@ pipeline {
                 checkout([$class: 'GitSCM', 
                           branches: [[name: '*/main']],
                           userRemoteConfigs: [[url: 'https://github.com/WorkingDada/simple-hello.git']]])
+            
+                sh "ls -al"
             }
         }
         
         stage('Build') {
             steps {
                 script {
-                    docker.build("python-hello:1.0", "-f dockerfile .")
-
+                    sh 'docker build -t pttzx/python-hello:1.0 -f ./dockerfile .'
+                    sh 'docker run pttzx/python-hello:1.0'
                 }
             }
         }
@@ -27,9 +29,9 @@ pipeline {
         stage('Push') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com', '2ac56da6-f375-4326-8e84-126f2c4b5463') {
-                        docker.image("python-hello:1.0").push()
-                    }
+                    // docker.withRegistry('https://hub.docker.com', '2ac56da6-f375-4326-8e84-126f2c4b5463') {
+                        sh 'docker image push pttzx/python-hello:1.0'
+                    // }
                 }
             }
         }

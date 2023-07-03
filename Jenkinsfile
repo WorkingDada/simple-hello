@@ -1,6 +1,15 @@
 pipeline {
     agent any
     stages {
+        stage('Example') {
+            steps {
+                script {
+                    // Reference the workspace directory using the `workspace` variable
+                    dir(workspace) {
+                        sh 'echo "I am in the workspace: ${pwd()}"'
+                    }
+                }
+            }
         stage('Initialize Git Repository') {
             steps {
                 script {

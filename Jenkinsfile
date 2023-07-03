@@ -1,6 +1,20 @@
 pipeline {
     agent any
     stages {
+        stage('Check Git Version') {
+            steps {
+                sh 'git --version'
+            }
+        }
+        
+        stage('Clone Repository') {
+            steps {
+                checkout([$class: 'GitSCM', 
+                          branches: [[name: '*/main']],
+                          userRemoteConfigs: [[url: 'https://github.com/WorkingDada/simple-hello.git']]])
+            }
+        }
+        
         stage('Build') {
             steps {
                 script {

@@ -1,14 +1,16 @@
 pipeline {
     agent any
     stages {
-        stage('Check Git') {
+        stage('Initialize Git Repository') {
             steps {
                 script {
-                    git init
-                    git remote add origin 'https://github.com/WorkingDada/simple-hello.git'
+                    dir('.jenkins/workspace/') {
+                        sh 'git init'
+                    }
                 }
             }
         }
+
         stage('Build') {
             steps {
                 script {

@@ -1,6 +1,13 @@
 pipeline {
     agent any
     stages {
+        stage('Check Git') {
+            steps {
+                script {
+                    git --version
+                }
+            }
+        }
         stage('Build') {
             steps {
                 script {
